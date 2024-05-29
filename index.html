@@ -1,108 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-pink.css">    
-<title>KatLin Kreations Links</title>
-<script src="https://unpkg.com/feather-icons"></script>
-<style>
-body {
-  background-color: #FFD6E9; /*background */
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KatLin Kreations</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="./events.js"></script> 
+  <style type="text/tailwindcss">
+    /* Custom Tailwind Config */
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
 
-.container {
-  width: 100%;
-  height: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
+    @layer components {
+      .gradient-text {
+        @apply bg-gradient-to-br from-pink-300 to-pink-700 inline-block text-transparent bg-clip-text;
+      }
 
-.links-container {
-  display: flex;
-  flex-direction: column;
-  jusify-content: center;
-  align-items: center;
-}
+      .gradient-bg {
+        @apply bg-gradient-to-br from-pink-100 to-pink-400;
+      }
+    }
 
-.links-container a {
-  width: 80%;
-}
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FFD6E9',
+            accent: '#ed4d82'
+          },
+          screens: {
+            'xs': '340px',
+            'minxs': '450px'
+          },
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="app" class="min-h-screen pb-24">
+    <!-- Navbar -->
+    <nav class=" max-w-7xl mx-auto sticky top-0 bg-white">
+      <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+        <div class="relative flex items-center justify-between h-16">
+          <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+            <!-- Mobile menu button -->
+            <button @click="isOpen = !isOpen" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-accent hover:text-white hover:bg-accent focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+              <span class="sr-only">Open main menu</span>
+              <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+              </svg>
+              <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+          <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+            <div class="flex-shrink-0">
+              <img src="./assets/logo.png" alt="Logo" class="h-8">
+            </div>
+            <div class="hidden sm:block sm:ml-6">
+              <div class="flex space-x-4 h-full items-center justify-center ">
+                <a href="#home" class="text-accent hover:bg-accent hover:text-white px-3 py-2 rounded-md text-sm font-bold">Home</a>
+                <a href="#events" class="text-accent hover:bg-accent hover:text-white px-3 py-2 rounded-md text-sm font-bold">Events</a>
+                <a href="#about" class="text-accent hover:bg-accent hover:text-white px-3 py-2 rounded-md text-sm font-bold">About Us</a>
+                <a href="#instagram" class="text-accent hover:gradient-bg to-[#6228d7] hover:text-white px-3 py-2 rounded-md text-sm font-bold">Follow us on Instagram!</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Mobile menu, show/hide based on menu state. -->
+      <div v-if="isOpen" class="sm:hidden" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <a href="#home" @click="navLinkClicked" class="text-gray-900 hover:bg-accent hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+          <a href="#events" @click="navLinkClicked" class="text-gray-900 hover:bg-accent hover:text-white block px-3 py-2 rounded-md text-base font-medium">Events</a>
+          <a href="#about" @click="navLinkClicked" class="text-gray-900 hover:bg-accent hover:text-white block px-3 py-2 rounded-md text-base font-medium">About Us</a>
+          <a href="#instagram" @click="navLinkClicked" class="text-gray-900 hover:bg-accent hover:text-white block px-3 py-2 rounded-md text-base font-medium">Follow us on Instagram!</a>
+        </div>
+      </div>
+    </nav>
+    
 
-.w3-theme-l1:hover {
-  background-color: #f279a1 !important;
-}
+    <!-- Hero Section -->
+    <section id="home" class="rounded-b-3xl max-w-7xl mx-auto px-2">
+      <div class="gradient-bg p-4 rounded-xl ">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4  border-8 border-black overflow-hidden">
+          <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center mx-auto">
+            <div class="text-center mx-auto">
+              <img src="./assets/logo.png" class="w3-margin mx-auto" alt="image" width="100%">
+              <h2 class="text-2xl font-extrabold text-gray-800 ">
+               Beautifully Hand-crafted Items
+              </h2>
+              <p class="mt-4 text-lg leading-6 text-gray-700">
+                Purses, bags, and art pieces made with love and care in Ontario, Canada.
+              </p>
+              <div class="mt-5 flex gap-2 flex-col sm:flex-row justify-center" > 
+                <div v-for="(social, index) in socials" :key="index">
+                  <a target="_blank" :href="social.url" class="" >
+                    <button
+                      class="w-full flex items-center mx-auto justify-center px-1 py-1 border border-transparent font-medium rounded-md shadow-sm text-white bg-accent hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 min-w-[180px]"
+                    >
+                      <img :src="social.img" alt="Social Icon" class="w-12 h-12">
+                      {{ social.name }}
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="mt-10 lg:mt-0">
+              <img class="sm:block hidden" src="./assets/hero.png" alt="Hero Image">
+              <img class="sm:hidden block -rotate-[20deg] scale-[250%] relative xs:mt-44 minxs:mt-64 " src="./assets/hero-mobile.png" alt="Hero Image">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-.margin-top-2 {
-  margin-top: 32px;
-}
 
-.bottom {
-  width: 100%;
-  text-align: center;
-  width: auto;
-  font-weight: bolder;
-}
+    <!-- Events List -->
+    <section id="events"> 
+      <div class="max-w-7xl mx-auto py-12">
+        <h2 class="text-3xl font-bold leading-7 gradient-text sm:truncate sm:text-3xl sm:tracking-tight px-2">We're on the Road!</h2>
+        <div class="mt-2 flex items-center text-normal text-gray-500 px-2">Stay up-to-date on our schedule, we hope to see you!</div>
+        <ul role="list" class="divide-y divide-gray-100 mt-10">
+          <li 
+            v-for="(event, index) in events" :key="index" 
+            class="flex justify-between gap-x-6 py-5 hover:bg-primary rounded-md px-2 py-2" 
+            :class="`hover:bg-${timeLeft(event.startDate).color}-100`"
+          >
+            <a :href="event.link" class="flex min-w-0 gap-x-4 w-full">
+              <div class="flex min-w-0 gap-x-4">
+                <div class="min-w-0 flex-auto">
+                  <p class="text-md font-semibold leading-6 text-gray-900">{{ event.name }}</p>
+                  <p class="mt-2 truncate text-sm leading-5 text-gray-500">{{ event.location }}</p>
+                </div>
+              </div>
+              <div class="shrink-0 sm:flex sm:flex-col sm:items-end flex-1">
+                <p class="sm:block hidden text-sm text-right leading-6 text-gray-900">{{ formatDate(event.startDate) }} - {{ formatDate(event.endDate) }}</p>
+                <p class="sm:hidden block text-sm leading-6 text-right text-gray-900">{{ formatDateShort(event.startDate) }} - {{ formatDateShort(event.endDate) }}</p>
+                <div class="mt-2 ßflex float-right items-center gap-x-1.5">
+                  <!-- append timeLeft(event.startDate).color to background -->
+                  <div 
+                    class="px-2 py-1 text-sm font-semibold text-white rounded-md bg-green-500" 
+                    :class="`bg-${timeLeft(event.startDate).color}-500`"
+                  >
+                    {{ timeLeft(event.startDate).response }}
+                  </div>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-.bottom span {
-  color: #FFFFFF;
-}
+    <hr class="max-w-7xl mx-auto">
 
-.bottom svg {
-  stroke: #FFFFFF;
-  fill: #FFFFFF;
-}
-
-@media (min-width: 768px) {
-  .link {
-    width: 100%;
-  }
-}
-@media (min-width: 576px) {
-  .container {
-    max-width: 540px;
-  }
-}
-</style>
-  </head>
-  <body>
-    <!-- Content container -->
-    <div class="container">
-
-      <!-- Image and name container. Change to your pictue here. -->
-      <div style="text-align: center">
-        <img src="logo.png" class="w3-margin" alt="image" width="60%">
+    <!-- If you want to customize the about us section, customize the p tag on line 173-180 -->
+    <section id="about" class="max-w-7xl mx-auto">
+      <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-12 ">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center mx-auto">
+          <div class="mx-auto text-center">
+            <h2 class="text-3xl">👜 </h2>
+            <h2 class="text-2xl font-extrabold gradient-text p-4 rounded-3xl inline-block text-transparent bg-clip-text">
+             About Us
+            </h2>
+            <p class="mt-4 text-lg leading-6 text-gray-700">
+              KatLin Kreations is a small business based in 
+              <span>🇨🇦 Ontario, Canada. </span> We specialize in creating beautiful, hand-crafted items such as purses, bags, and art pieces. Our products are made with love and care, and we take pride in the quality of our work. We are passionate about what we do, and we are dedicated to providing our customers with unique and beautiful pieces that they will love. 
+              
+              <br><br>
+              <span class="gradient-text font-bold">Thank you</span> 
+              for supporting our small business!
+            </p>
+          </div>
+          <div class="mt-10 lg:mt-0 ">
+            <img class="rounded-2xl object-cover h-[400px] w-full mx-auto" src="./assets/purse.jpg" alt="About Image">
+          </div>
+        </div>
       </div>
 
-      <!-- Links section 1. Replace the # inside of the "" with your links. -->
-      <h4 class="margin-top-2" style="text-align: center;">SOCIAL NETWORKS</h4>
-      <div class="links-container">
-        <a href="https://www.facebook.com/profile.php?id=100079136108467" class="w3-button w3-round-xlarge w3-theme-l1 w3-border link" target="_blank">Facebook</a>
-        <br>
-        <a href="https://www.instagram.com/KatLinKreations/?fbclid=IwAR33CYRDlX7BlIGlTIjpJzLLjC_D_mpk6yP4hJ-D4D6W9O6hDSyq-5yW8ho" class="w3-button w3-round-xlarge w3-theme-l1 w3-border link" target="_blank">Instagram</a>
-        <br>
-        <a href="https://www.etsy.com/ca/shop/KMCraftsCanada" class="w3-button w3-round-xlarge w3-theme-l1 w3-border link" target="_blank">Etsy</a>
-        
+    <section id="instagram">
+      <div class="max-w-7xl mx-auto px-2 lg:px-8 py-12 ">
+        <h2 class="text-3xl font-bold leading-7 gradient-text sm:truncate sm:text-3xl sm:tracking-tight px-2">Follow Us on Instagram</h2>
+        <div class="mt-2 flex items-center text-normal text-gray-500 px-2">Stay up-to-date on our latest creations!</div>
+        <div class="px-2">
+          <iframe
+            src="https://www.instagram.com/KatLinKreations/embed"
+            class="mx-auto sm:h-[700px] md:h-[1000px] lg:h-[1200px]"
+            width="100%"
+            height="700"
+            frameborder="0"
+            scrolling="no"
+            allowtransparency="true"
+          ></iframe>
+        </div>
       </div>
-
-      <!-- Links section 2. Replace the # inside of the "" with your links. -->
-      <h4 class="margin-top-2" style="text-align: center;">Market Schedule</h4>
-      <div class="links-container">
-        
-        <!-- Show Dates  -->
-         
-        <!-- London Christmas Nov 30 - Dec 3 -->
-                <a href="https://londoncraftshows.com/" class="w3-button w3-round-xlarge w3-theme-l1 w3-border link" target="_blank">November 30th - December 3rd<br>London Christmas Craft Show<br>AGRIPLEX<br>Western Fair District</a>
-       
-      </div>
-
-
+    </section>
+  </div>
+  <footer class="w-full h-24 bg-zinc-50 text-center dark:bg-neutral-700 lg:text-left">
+    <div class="bg-black/5 p-4 text-center text-surface dark:text-white">
+     <div>
+        <span>
+          © 2024 Copyright:
+        </span>
+        <a href="https://tw-elements.com/">KatlinKreations</a>
+     </div>
+      <!-- Made with love section -->
+      <span class="text-sm text-gray-500">Made with &lt;3 by Denis Nadarevic</span>
     </div>
-    <script>
-      feather.replace()
-    </script>
-  </body>  
+  </footer>
+
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          isOpen: false,
+          socials: [
+            { name: 'Facebook', url: 'https://www.facebook.com/profile.php?id=100079136108467', img:'./assets/facebook.svg' },
+            { name: 'Instagram', url: 'https://www.instagram.com/KatLinKreations/?fbclid=IwAR33CYRDlX7BlIGlTIjpJzLLjC_D_mpk6yP4hJ-D4D6W9O6hDSyq-5yW8ho', img:'./assets/instagram.svg' },
+            { name: 'Etsy', url: 'https://www.etsy.com/ca/shop/KMCraftsCanada', img:'./assets/etsy.svg' },
+          ],
+          events: window.events
+        };
+      },
+      methods: {
+        // Takes the YYYY-MM-DD date and returns a string that tells you how much time is left before it starts
+        // Example: 5 days left
+        timeLeft(date) {
+          const eventDate = new Date(date);
+          const currentDate = new Date();
+          const timeLeft = eventDate - currentDate;
+          const daysLeft = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+          if (daysLeft < 0) {
+            return {response: 'Event has passed', color: 'red'};
+          }
+          return { response: `${daysLeft} days left`, color: 'green' };
+        },
+        // Turns YYYY-MM-DD into a more readable format
+        // Example: July 23, 2024
+        formatDate(date) {
+          const options = { year: 'numeric', month: 'long', day: 'numeric' };
+          return new Date(date).toLocaleDateString(undefined, options);
+        },
+        // same as FormateDate but turn it into a shorter format
+        // Example: Jul 23, 2024
+        formatDateShort(date) {
+          const options = { year: 'numeric', month: 'short', day: 'numeric' };
+          return new Date(date).toLocaleDateString(undefined, options);
+        },
+        navLinkClicked() {
+          this.isOpen = false
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
 </html>
