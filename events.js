@@ -14,7 +14,7 @@ window.events = [
     endDate: '2024-06-02',
   },
   {
-    name: 'Cindy's Home & Garden',
+    name: 'Cindys Home And Garden',
     location: 'Kingsville',
     link: 'https://cindysgarden.com/events/',
     startDate: '2024-06-15',
@@ -28,7 +28,7 @@ window.events = [
     endDate: '2024-07-14',
   },
   {
-    name: 'Cindy's Home & Garden',
+    name: 'Cindys Home And Garden',
     location: 'Kingsville',
     link: 'https://cindysgarden.com/events/',
     startDate: '2024-07-26',
