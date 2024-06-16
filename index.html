@@ -131,7 +131,7 @@
           <li 
             v-for="(event, index) in events" :key="index" 
             class="flex justify-between gap-x-6 py-5 hover:bg-primary rounded-md px-2 py-2" 
-            :class="`hover:bg-${timeLeft(event.startDate).color}-100`"
+            :class="`hover:bg-${timeLeft(event.startDate, event.endDate).color}-100`"
           >
             <a :href="event.link" class="flex min-w-0 gap-x-4 w-full">
               <div class="flex min-w-0 gap-x-4">
@@ -147,9 +147,9 @@
                   <!-- append timeLeft(event.startDate).color to background -->
                   <div 
                     class="px-2 py-1 text-sm font-semibold text-white rounded-md bg-green-500" 
-                    :class="`bg-${timeLeft(event.startDate).color}-500`"
+                    :class="`bg-${timeLeft(event.startDate,event.endDate).color}-500`"
                   >
-                    {{ timeLeft(event.startDate).response }}
+                    {{ timeLeft(event.startDate, event.endDate).response }}
                   </div>
                 </div>
               </div>
@@ -234,26 +234,31 @@
       methods: {
         // Takes the YYYY-MM-DD date and returns a string that tells you how much time is left before it starts
         // Example: 5 days left
-        timeLeft(date) {
-          const eventDate = new Date(date);
-          const currentDate = new Date();
-          const timeLeft = eventDate - currentDate;
-          const daysLeft = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-          if (daysLeft < 0) {
-            return {response: 'Event has passed', color: 'red'};
+        timeLeft(startDate, endDate) {
+            const eventStartDate = new Date(startDate + 'T00:00:00-05:00');
+            const eventEndDate = new Date(endDate + 'T23:59:59-05:00');
+            const currentDate = new Date();
+          
+          if (currentDate > eventEndDate) {
+            return { response: 'Event has passed', color: 'red' };
+          } else if (currentDate >= eventStartDate && currentDate <= eventEndDate) {
+            return { response: 'Event is happening now!', color: 'blue' };
+          } else {
+            const timeLeft = eventStartDate - currentDate;
+            const daysLeft = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            return { response: `${daysLeft+1} days left`, color: 'green' };
           }
-          return { response: `${daysLeft} days left`, color: 'green' };
         },
         // Turns YYYY-MM-DD into a more readable format
         // Example: July 23, 2024
         formatDate(date) {
-          const options = { year: 'numeric', month: 'long', day: 'numeric' };
+          const options = { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' };
           return new Date(date).toLocaleDateString(undefined, options);
         },
         // same as FormateDate but turn it into a shorter format
         // Example: Jul 23, 2024
         formatDateShort(date) {
-          const options = { year: 'numeric', month: 'short', day: 'numeric' };
+          const options = { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC'  };
           return new Date(date).toLocaleDateString(undefined, options);
         },
         navLinkClicked() {
