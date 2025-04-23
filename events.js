@@ -7,6 +7,41 @@
 
 window.events = [
   {
+    name: 'Art In The Park',
+    location: 'Windsor, Willistead Park',
+    link: 'https://www.artintheparkwindsor.com/',
+    startDate: '2025-06-07',
+    endDate: '2025-06-08',
+  },
+  {
+    name: 'Goderich Kinette\'s Festival of Arts and Crafts Vendor Showcase',
+    location: 'Goderich, Courthouse Square',
+    link: 'https://www.district1kin.ca/index.php/Events/2025-07-04-GoderichKinettesFestivalofArtsCrafts',
+    startDate: '2025-07-04',
+    endDate: '2025-07-06',
+  },
+  {
+    name: 'Lambton Fall Colour & Craft Festival',
+    location: 'Grand Bend, Lambton Heritage Museum',
+    link: 'https://www.lambtonmuseums.ca/en/lambton-heritage-museum/lambton-fall-colour-craft-festival.aspx',
+    startDate: '2025-10-18',
+    endDate: '2025-10-19',
+  },
+   {
+    name: 'London Christmas Craft Show',
+    location: 'London, Western Fair District Agriplex',
+    link: 'https://londoncraftshows.com/',
+    startDate: '2025-12-04',
+    endDate: '2025-12-07',
+  },
+  {
+    name: 'London Spring Craft Show',
+    location: 'London',
+    link: 'https://londoncraftshows.com/',
+    startDate: '2025-04-17',
+    endDate: '2025-04-18',
+  },
+  {
     name: 'Cindys Home And Garden',
     location: 'Kingsville',
     link: 'https://cindysgarden.com/events/',
@@ -55,26 +90,12 @@ window.events = [
     startDate: '2024-11-02',
     endDate: '2024-11-03',
   },
-  {
-    name: 'The Mom Market Collective',
-    location: 'Lasalle Event Center',
-    link: 'https://www.instagram.com/themommarket_windsor',
-    startDate: '2024-11-23',
-    endDate: '2024-11-23',
-  },
    {
     name: 'London Christmas Craft Show',
     location: 'London - Western Fairgorund | Agriplex',
     link: 'https://londoncraftshows.com/',
     startDate: '2024-11-28',
     endDate: '2024-12-01',
-  },
-  {
-    name: 'The Mom Market Collective',
-    location: 'Lasalle Event Center',
-    link: 'https://www.instagram.com/themommarket_windsor',
-    startDate: '2024-12-14',
-    endDate: '2024-12-25',
   }
   
 ];
