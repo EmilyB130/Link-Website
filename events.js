@@ -21,6 +21,13 @@ window.events = [
     endDate: '2025-07-06',
   },
   {
+    name: 'Art By The River',
+    location: 'Amherstburg, Fort Malden',
+    link: 'http://www.gibsonartgallery.com/Art-by-the-River.html',
+    startDate: '2025-08-23',
+    endDate: '2025-08-24',
+  },
+  {
     name: 'Lambton Fall Colour & Craft Festival',
     location: 'Grand Bend, Lambton Heritage Museum',
     link: 'https://www.lambtonmuseums.ca/en/lambton-heritage-museum/lambton-fall-colour-craft-festival.aspx',
